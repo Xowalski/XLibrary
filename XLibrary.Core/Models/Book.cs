@@ -14,7 +14,7 @@ namespace XLibrary.Core.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
-        [DisplayName ("PublicationYear Year")]
+        [DisplayName ("Publication Year")]
         public int PublicationYear { get; set; }
         public string Description { get; set; }
         [DisplayName ("Is avaible")]
