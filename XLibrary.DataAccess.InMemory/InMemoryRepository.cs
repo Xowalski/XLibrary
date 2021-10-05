@@ -4,78 +4,80 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
+using XLibrary.Core.Contracts;
 using XLibrary.Core.Models;
 
 namespace XLibrary.DataAccess.InMemory
 {
-    public class BookRepository
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
-        List<Book> books;
+        List<T> items;
+        string className;
 
-        public BookRepository()
+        public InMemoryRepository()
         {
-            books = cache["books"] as List<Book>;
-            if (books == null)
+            className = typeof(T).Name;
+            items = cache[className] as List<T>;
+            if (items == null)
             {
-                books = new List<Book>();
+                items = new List<T>();
             }
         }
 
         public void Commit()
         {
-            cache["books"] = books;
+            cache[className] = items;
         }
 
-        public void Insert(Book book)
+        public void Insert(T t)
         {
-            books.Add(book);
+            items.Add(t);
         }
 
-        public void Update(Book book)
+        public void Update(T t)
         {
-            Book bookToUpdate = books.Find(b => b.Id == book.Id);
+            T tToUpdate = items.Find(i => i.Id == t.Id);
 
-            if (bookToUpdate != null)
+            if (tToUpdate != null)
             {
-                bookToUpdate = book;
+                tToUpdate = t;
             }
             else
             {
-                throw new Exception("Book not found");
+                throw new Exception(className + " Not found");
             }
         }
 
-        public Book Find(string Id)
+        public T Find(string Id)
         {
-            Book book = books.Find(b => b.Id == Id);
-
-            if (book != null)
+            T t = items.Find(i => i.Id == Id);
+            if (t != null)
             {
-                return book;
+                return t;
             }
             else
             {
-                throw new Exception("Book not found");
+                throw new Exception(className + " Not found");
             }
         }
 
-        public IQueryable<Book> Collection()
+        public IQueryable<T> Collection()
         {
-            return books.AsQueryable();
+            return items.AsQueryable();
         }
 
         public void Delete(string Id)
         {
-            Book bookToDelete = books.Find(b => b.Id == Id);
+            T tToDelete = items.Find(i => i.Id == Id);
 
-            if (bookToDelete != null)
+            if (tToDelete != null)
             {
-                books.Remove(bookToDelete);
+                items.Remove(tToDelete);
             }
             else
             {
-                throw new Exception("Product no found");
+                throw new Exception(className + " Not found");
             }
         }
     }

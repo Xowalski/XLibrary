@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using XLibrary.Core.Contracts;
 using XLibrary.Core.Models;
 using XLibrary.DataAccess.InMemory;
 
@@ -11,11 +12,11 @@ namespace XLibrary.WebUI.Controllers
 {
     public class BookManagerController : Controller
     {
-        BookRepository context;
+        IRepository<Book> context;
 
-        public BookManagerController()
+        public BookManagerController(IRepository<Book> bookContext)
         {
-            context = new BookRepository();
+            context = bookContext;
         }
         // GET: ProductManager
         public ActionResult Index()
