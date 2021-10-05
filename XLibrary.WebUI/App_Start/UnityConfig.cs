@@ -1,6 +1,9 @@
 using System;
 
 using Unity;
+using XLibrary.Core.Contracts;
+using XLibrary.Core.Models;
+using XLibrary.DataAccess.InMemory;
 
 namespace XLibrary.WebUI
 {
@@ -42,6 +45,8 @@ namespace XLibrary.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+
+            container.RegisterType<IRepository<Book>, InMemoryRepository<Book>>();
         }
     }
 }
