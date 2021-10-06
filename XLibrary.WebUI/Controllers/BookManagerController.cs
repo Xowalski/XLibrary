@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,7 +19,7 @@ namespace XLibrary.WebUI.Controllers
         {
             context = bookContext;
         }
-        // GET: ProductManager
+        
         public ActionResult Index()
         {
             List<Book> books = context.Collection().ToList();
@@ -32,7 +33,7 @@ namespace XLibrary.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Book book)
+        public ActionResult Create(Book book, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -40,6 +41,12 @@ namespace XLibrary.WebUI.Controllers
             }
             else
             {
+                if (file != null)
+                {
+                    book.Image = book.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//BookImages//") + book.Image);
+                }
+
                 context.Insert(book);
                 context.Commit();
 
@@ -62,7 +69,7 @@ namespace XLibrary.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Book book, string Id)
+        public ActionResult Edit(Book book, string Id, HttpPostedFileBase file)
         {
             Book bookToEdit = context.Find(Id);
 
@@ -77,13 +84,18 @@ namespace XLibrary.WebUI.Controllers
                     return View(book);
                 }
 
+                if (file != null)
+                {
+                    bookToEdit.Image = book.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//BookImages//") + bookToEdit.Image);
+                }
+
                 bookToEdit.Title = book.Title;
                 bookToEdit.Author = book.Author;
                 bookToEdit.Publisher = book.Publisher;
                 bookToEdit.PublicationYear = book.PublicationYear;
                 bookToEdit.Description = book.Description;
                 bookToEdit.IsAvaible = book.IsAvaible;
-                bookToEdit.Image = book.Image;
 
                 context.Commit();
 
