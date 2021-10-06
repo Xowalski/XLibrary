@@ -48,6 +48,7 @@ namespace XLibrary.WebUI
             // container.RegisterType<IProductRepository, ProductRepository>();
 
             container.RegisterType<IRepository<Book>, SQLRepository<Book>>();
+            container.RegisterType<IRepository<Reader>, SQLRepository<Reader>>();
         }
     }
 }

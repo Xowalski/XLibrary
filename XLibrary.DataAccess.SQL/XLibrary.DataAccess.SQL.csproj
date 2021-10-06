@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202110051729292_Initial.designer.cs">
       <DependentUpon>202110051729292_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110061854200_AddReaders.cs" />
+    <Compile Include="Migrations\202110061854200_AddReaders.designer.cs">
+      <DependentUpon>202110061854200_AddReaders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -73,6 +77,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110051729292_Initial.resx">
       <DependentUpon>202110051729292_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110061854200_AddReaders.resx">
+      <DependentUpon>202110061854200_AddReaders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

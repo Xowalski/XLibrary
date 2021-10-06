@@ -17,5 +17,6 @@ namespace XLibrary.DataAccess.SQL
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Reader> Readers { get; set; }
     }
 }
