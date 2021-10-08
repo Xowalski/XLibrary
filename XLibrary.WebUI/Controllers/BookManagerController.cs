@@ -11,6 +11,7 @@ using XLibrary.DataAccess.InMemory;
 
 namespace XLibrary.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BookManagerController : Controller
     {
         IRepository<Book> context;
