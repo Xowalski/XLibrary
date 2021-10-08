@@ -95,7 +95,7 @@ namespace XLibrary.WebUI.Controllers
                 bookToEdit.Publisher = book.Publisher;
                 bookToEdit.PublicationYear = book.PublicationYear;
                 bookToEdit.Description = book.Description;
-                bookToEdit.IsAvaible = book.IsAvaible;
+                bookToEdit.IsAvailable = book.IsAvailable;
 
                 context.Commit();
 

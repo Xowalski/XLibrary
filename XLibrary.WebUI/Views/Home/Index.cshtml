@@ -18,51 +18,40 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsAvaible)
+            @Html.DisplayNameFor(model => model.IsAvailable)
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+<tr>
+    <td>
+        <img class="img-thumbnail" style="height:96px;width:96px" src="~/Content/BookImages/@item.Image" />
+    </td>
+    <td>
+        <strong>@Html.ActionLink(item.Title, "Details", new { id = item.Id })</strong>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Author)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    @{
+        if (item.IsAvailable)
+        {
             <td>
-                <img class="img-thumbnail" style="height:96px;width:96px" src="~/Content/BookImages/@item.Image" />
+                <a href="@Url.Action("ReserveAction", "Home", new { id = item.Id })" class="btn btn-default">Reserve</a>
             </td>
+        }
+        else
+        {
             <td>
-                <strong>@Html.ActionLink(item.Title, "Details", new { id = item.Id })</strong>
+                <a href="#" class="btn-block" style="color:lightslategray">Unavailable</a>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a href="#" class="btn btn-default">Reserve</a>
-            </td>
-        </tr>
+        }
+    }
+
+</tr>
     }
 </table>
-
-@*@foreach (var item in Model)
-    {
-
-        <div class="col-md-4" style="height:450px;padding:10px;margin:10px;border: solid thin whitesmoke">
-            <div class="col-md-12">
-                <img class="img" style="height:150px;width:150px" src="~/Content/BookImages/@item.Image" />
-            </div>
-            <div class="col-md-12">
-                <strong>@Html.ActionLink(item.Title, "Details", new { id = item.Id })</strong>
-            </div>
-            <div class="col-md-12">
-                <p>@item.Author</p>
-            </div>
-            <div class="col-md-12">
-                <h4>@item.Description</h4>
-            </div>
-            <div class="col-md-12">
-                <a href="#" class="btn btn-default">Reserve</a>
-            </div>
-        </div>
-    }
-    <div class="col-md-12 clearfix" />*@

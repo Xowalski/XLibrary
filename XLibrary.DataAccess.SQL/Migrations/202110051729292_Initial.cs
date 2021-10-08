@@ -17,7 +17,7 @@
                         Publisher = c.String(),
                         PublicationYear = c.Int(nullable: false),
                         Description = c.String(),
-                        IsAvaible = c.Boolean(nullable: false),
+                        IsAvailable = c.Boolean(nullable: false),
                         Image = c.String(),
                         CreatedAt = c.DateTimeOffset(nullable: false, precision: 7),
                     })

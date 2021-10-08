@@ -16,13 +16,13 @@ namespace XLibrary.Core.Models
         [DisplayName ("Publication Year")]
         public int PublicationYear { get; set; }
         public string Description { get; set; }
-        [DisplayName ("Is avaible")]
-        public bool IsAvaible { get; set; }
+        [DisplayName ("Availability")]
+        public bool IsAvailable { get; set; }
         public string Image { get; set; }
 
         public Book()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.IsAvailable = true;
         }
     }
 }

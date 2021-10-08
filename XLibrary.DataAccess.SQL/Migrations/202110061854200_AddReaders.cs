@@ -23,7 +23,6 @@
                         CreatedAt = c.DateTimeOffset(nullable: false, precision: 7),
                     })
                 .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()

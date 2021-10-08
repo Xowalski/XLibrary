@@ -5,6 +5,7 @@ using XLibrary.Core.Contracts;
 using XLibrary.Core.Models;
 using XLibrary.DataAccess.InMemory;
 using XLibrary.DataAccess.SQL;
+using XLibrary.Services;
 
 namespace XLibrary.WebUI
 {
@@ -49,6 +50,9 @@ namespace XLibrary.WebUI
 
             container.RegisterType<IRepository<Book>, SQLRepository<Book>>();
             container.RegisterType<IRepository<Reader>, SQLRepository<Reader>>();
+            container.RegisterType<IRepository<Reservation>, SQLRepository<Reservation>>();
+
+            container.RegisterType<IReserveService, ReservationService>();
         }
     }
 }

@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XLibrary.Core\XLibrary.Core.csproj">
+      <Project>{e7312ebe-f6aa-46a7-b15b-b951a026c12f}</Project>
+      <Name>XLibrary.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

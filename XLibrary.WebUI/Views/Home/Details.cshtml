@@ -46,15 +46,28 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.IsAvaible)
+                @Html.DisplayNameFor(model => model.IsAvailable)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.IsAvaible)
+                @Html.DisplayFor(model => model.IsAvailable)
             </dd>
 
             <dt></dt>
-            <dd><a href="#" class="btn btn-default">Reserve</a></dd>
+            @{
+                if (Model.IsAvailable)
+                {
+                    <dd>
+                        <a href="@Url.Action("ReserveAction", "Home", new { id = Model.Id })" class="btn btn-default">Reserve</a>
+                    </dd>
+                }
+                else
+                {
+                    <dd>
+                        <a href="#" class="btn-block" style="color:lightslategray">Unavailable</a>
+                    </dd>
+                }
+            }
 
             <dt></dt>
             <dd>@Html.ActionLink("Back to List", "Index")</dd>
