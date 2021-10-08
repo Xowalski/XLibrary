@@ -1,0 +1,44 @@
+﻿@model XLibrary.Core.ViewModels.ShowHistoryViewModel
+
+@{
+    ViewBag.Title = "Reservation History";
+}
+
+<h3>Show reservation history of:</h3>
+<hr/>
+<h4>Title: @Html.DisplayFor(model => model.Title)</h4>
+<h4>Author: @Html.DisplayFor(model => model.Author)</h4>
+<h4>BookId: @Html.DisplayFor(model => model.BookId)</h4>
+<hr />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservations.First().Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservations.First().CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservations.First().ReaderId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Reservations.OrderBy(m => m.CreatedAt).Where(m => m.ReservedBookId == Model.BookId)) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReaderId)
+    </td>
+    <td>
+        @Html.ActionLink("Back to Library Administrator Page", "Index")
+</tr>
+}
+
+</table>

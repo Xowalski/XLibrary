@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using XLibrary.Core.Contracts;
 using XLibrary.Core.Models;
+using XLibrary.Core.ViewModels;
 using XLibrary.DataAccess.InMemory;
 
 
@@ -14,16 +15,18 @@ namespace XLibrary.WebUI.Controllers
     [Authorize(Roles = "Admin")]
     public class BookManagerController : Controller
     {
-        IRepository<Book> context;
+        IRepository<Book> bookContext;
+        IRepository<Reservation> reservationContext;
 
-        public BookManagerController(IRepository<Book> bookContext)
+        public BookManagerController(IRepository<Book> BookContext, IRepository<Reservation> ReservationContext)
         {
-            context = bookContext;
+            this.bookContext = BookContext;
+            this.reservationContext = ReservationContext;
         }
         
         public ActionResult Index()
         {
-            List<Book> books = context.Collection().ToList();
+            List<Book> books = bookContext.Collection().ToList();
             return View(books);
         }
 
@@ -48,8 +51,8 @@ namespace XLibrary.WebUI.Controllers
                     file.SaveAs(Server.MapPath("//Content//BookImages//") + book.Image);
                 }
 
-                context.Insert(book);
-                context.Commit();
+                bookContext.Insert(book);
+                bookContext.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -58,7 +61,7 @@ namespace XLibrary.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Book book = context.Find(Id);
+            Book book = bookContext.Find(Id);
             if (book == null)
             {
                 return HttpNotFound();
@@ -72,7 +75,7 @@ namespace XLibrary.WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(Book book, string Id, HttpPostedFileBase file)
         {
-            Book bookToEdit = context.Find(Id);
+            Book bookToEdit = bookContext.Find(Id);
 
             if (bookToEdit == null)
             {
@@ -98,7 +101,7 @@ namespace XLibrary.WebUI.Controllers
                 bookToEdit.Description = book.Description;
                 bookToEdit.IsAvailable = book.IsAvailable;
 
-                context.Commit();
+                bookContext.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -106,7 +109,7 @@ namespace XLibrary.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Book bookToDelete = context.Find(Id);
+            Book bookToDelete = bookContext.Find(Id);
 
             if (bookToDelete == null)
             {
@@ -122,7 +125,7 @@ namespace XLibrary.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Book bookToDelete = context.Find(Id);
+            Book bookToDelete = bookContext.Find(Id);
 
             if (bookToDelete == null)
             {
@@ -130,10 +133,25 @@ namespace XLibrary.WebUI.Controllers
             }
             else
             {
-                context.Delete(Id);
-                context.Commit();
+                bookContext.Delete(Id);
+                bookContext.Commit();
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult ShowHistory(string Id)
+        {
+            Book book = bookContext.Find(Id);
+            List<Reservation> Reservation = reservationContext.Collection().ToList();
+
+            ShowHistoryViewModel viewmodel = new ShowHistoryViewModel();
+            viewmodel.BookId = book.Id;
+            viewmodel.Title = book.Title;
+            viewmodel.Author = book.Author;
+            viewmodel.Reservations = Reservation;
+
+
+            return View(viewmodel);
         }
     }
 }

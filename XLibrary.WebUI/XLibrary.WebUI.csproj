@@ -263,6 +263,7 @@
     <Content Include="Views\BookManager\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="Views\BookManager\ShowHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

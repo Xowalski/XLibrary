@@ -55,10 +55,10 @@ namespace XLibrary.WebUI.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Zapamiętać Cię?")]
+        [Display(Name = "Remember password?")]
         public bool RememberMe { get; set; }
     }
 
@@ -66,18 +66,18 @@ namespace XLibrary.WebUI.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Adres e-mail")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0}  must have at least {2} characters.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Password and its confirmation does not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -97,18 +97,18 @@ namespace XLibrary.WebUI.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Adres e-mail")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} {0}  must have at least {2} characters.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "Hasło i jego potwierdzenie są niezgodne.")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Password and its confirmation does not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -118,7 +118,7 @@ namespace XLibrary.WebUI.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Adres e-mail")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 }
