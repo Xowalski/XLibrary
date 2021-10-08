@@ -6,9 +6,9 @@
 
 <h3>Show reservation history of:</h3>
 <hr/>
-<h4>Title: @Html.DisplayFor(model => model.Title)</h4>
-<h4>Author: @Html.DisplayFor(model => model.Author)</h4>
-<h4>BookId: @Html.DisplayFor(model => model.BookId)</h4>
+<h4>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h4>
+<h4>@Html.DisplayNameFor(model => model.Author): @Html.DisplayFor(model => model.Author)</h4>
+<h4>@Html.DisplayNameFor(model => model.BookId): @Html.DisplayFor(model => model.BookId)</h4>
 <hr />
 
 <table class="table">
