@@ -52,17 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\202110051729292_Initial.cs" />
-    <Compile Include="Migrations\202110051729292_Initial.designer.cs">
-      <DependentUpon>202110051729292_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110061854200_AddReaders.cs" />
-    <Compile Include="Migrations\202110061854200_AddReaders.designer.cs">
-      <DependentUpon>202110061854200_AddReaders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110071824216_AddReservation.cs" />
-    <Compile Include="Migrations\202110071824216_AddReservation.designer.cs">
-      <DependentUpon>202110071824216_AddReservation.cs</DependentUpon>
+    <Compile Include="Migrations\202110080807342_Initial.cs" />
+    <Compile Include="Migrations\202110080807342_Initial.designer.cs">
+      <DependentUpon>202110080807342_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,14 +71,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110051729292_Initial.resx">
-      <DependentUpon>202110051729292_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110061854200_AddReaders.resx">
-      <DependentUpon>202110061854200_AddReaders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110071824216_AddReservation.resx">
-      <DependentUpon>202110071824216_AddReservation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110080807342_Initial.resx">
+      <DependentUpon>202110080807342_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
